@@ -1,0 +1,10 @@
+Italiano: 6.66667
+Inglese: 7
+Storia: 7
+Matematica: 8.1
+Informatica: 8.83333
+Telecomunicazioni: 6.875
+Sistemi_e_reti: 8.4
+TPSIT: 8.35
+Educazione_Fisica: 6.5
+Religione: 7

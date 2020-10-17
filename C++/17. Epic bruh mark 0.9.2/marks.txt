@@ -1,0 +1,11 @@
+10
+Italiano					6.5		6 		7.5 									0
+Inglese						7.5		7 		6.5 									0
+Storia						7 		7 												0
+Matematica					6.5 	7.5 	9.5 	9 		8 						0
+Informatica					7.5 	8.5 	8 		10 		9 		10 				0
+Telecomunicazioni			7.75 	7.75 	6.5 	5.5 							0
+Sistemi_e_reti				7.5 	9.5 	7.5 	9.75 	7.75 					0
+TPSIT						8 		8 		9 		8.5 	8.25 					0
+Educazione_Fisica			6.5 	6.5 											0
+Religione					7														0
