@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.AbstractCollection;
 import java.util.Scanner;
 
 public class Main {
