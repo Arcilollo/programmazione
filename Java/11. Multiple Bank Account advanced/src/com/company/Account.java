@@ -51,7 +51,7 @@ public class Account {
 		return pay_msg;
 	}
 
-	private void interests(int a)
+	private void interests(int a) {
 		this.money = this.money + (this.money / 100 * a);
 	}
 
