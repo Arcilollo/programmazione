@@ -3,11 +3,11 @@ package com.company;
 public class Account {
 	private int account_number;
 	private String man;
-	private int money;
+	private float money;
 	private int isPayed;
 	private int month;
 
-	public Account (int a, String b, int c) {
+	public Account (int a, String b, float c) {
 		this.account_number = a;
 		this.man = b;
 		this.money = c;
@@ -23,7 +23,7 @@ public class Account {
 		return account_number;
 	}
 
-	public int getMoney() {
+	public float getMoney() {
 		return this.money;
 	}
 
@@ -35,11 +35,11 @@ public class Account {
 		return isPayed;
 	}
 
-	public void addMoney(int a) {
+	public void addMoney(float a) {
 		this.money += a;
 	}
 
-	public void removeMoney(int a) {
+	public void removeMoney(float a) {
 		this.money -= a;
 	}
 

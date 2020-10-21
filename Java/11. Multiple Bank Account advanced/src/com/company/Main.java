@@ -7,7 +7,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		int money, account_number;
+		float money;
+		int account_number;
 		String man;
 		int interests;
 		int annual_pay;
@@ -22,11 +23,12 @@ public class Main {
 		System.out.print("Inserisci il proprietario del conto: ");
 		man = scan.next();
 		System.out.print("Inserisci il saldo del conto: ");
-		money = scan.nextInt();
+		money = scan.nextFloat();
 
 		Account account = new Account(account_number, man, money);
 
-		int r, input;
+		int r;
+		float input;
 		String [] monthName = { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" };
 		do {
 			System.out.println("Benvenuto " + account.getMan() + " (" + account.getAccount_number() + ')');
@@ -42,11 +44,11 @@ public class Main {
 
 			switch (r) {
 				case 1:
-					input = scan.nextInt();
+					input = scan.nextFloat();
 					account.addMoney(input);
 					break;
 				case 2:
-					input = scan.nextInt();
+					input = scan.nextFloat();
 					account.removeMoney(input);
 					break;
 				case 3:
