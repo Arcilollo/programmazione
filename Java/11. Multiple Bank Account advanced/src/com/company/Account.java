@@ -6,7 +6,6 @@ public class Account {
 	private int money;
 	private int isPayed;
 	private int month;
-	private int interestsPercent;
 
 	public Account (int a, String b, int c) {
 		this.account_number = a;
@@ -14,7 +13,14 @@ public class Account {
 		this.money = c;
 		this.isPayed = 0;
 		this.month = 1;
-		this.interestsPercent = 3;
+	}
+
+	public String getMan() {
+		return man;
+	}
+
+	public int getAccount_number() {
+		return account_number;
 	}
 
 	public int getMoney() {
@@ -55,12 +61,12 @@ public class Account {
 		this.money = this.money + (this.money / 100 * a);
 	}
 
-	public String nextMonth() {
+	public String nextMonth(int annual_pay, int interestsPerc) {
 		String msg = " ";
 		if (this.month == 12) {
 			this.month = 1;
 			if (this.isPayed == 0) {
-				this.removeMoney(60);
+				this.removeMoney(annual_pay);
 				msg = "Le spese di gestione sono state pagate automaticamente.\n";
 			}
 			else
@@ -70,8 +76,8 @@ public class Account {
 		else
 			this.month++;
 
-		this.interests(this.interestsPercent);
-		msg += "Hai ricevuto " + (this.money / 100 * this.interestsPercent) + " euro di interessi.";
+		this.interests(interestsPerc);
+		msg += "Hai ricevuto " + (this.money / 100 * interestsPerc) + " euro di interessi.";
 
 		return msg;
 
