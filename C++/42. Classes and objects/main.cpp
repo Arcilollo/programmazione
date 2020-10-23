@@ -61,7 +61,7 @@ class Account {
 				msg = "You payed" + b + " euros of annual tax\n";
 			}
 			else
-				msg = "you don't have enought money for pay the annual tax\n";
+				msg = "You don't have enought money for pay the annual tax\n";
 
 			return msg;
 		}
@@ -119,7 +119,7 @@ int main() {
 		cout << "4. Next month\n";
 		if ((account.getIsPayed() == false) && (account.getMonth() >= 11))
 			cout << "5. Pay the annual tax\n";
-		cout << "0. exit\n";
+		cout << "0. Exit\n";
 		cin  >> r;
 
 		switch (r) {
