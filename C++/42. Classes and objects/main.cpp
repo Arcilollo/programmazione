@@ -58,21 +58,21 @@ class Account {
 				removeMoney(a);
 				isPayed = true;
 				string b = to_string(a);
-				msg = "Hai pagato " + b + " euro per la gestione annua del tuo conto\n";
+				msg = "You payed" + b + " euros of annual tax\n";
 			}
 			else
-				msg = "Non hai abbastanza soldi per pagare i costi di gestione annua del tuo conto\n";
+				msg = "you don't have enought money for pay the annual tax\n";
 
 			return msg;
 		}
 
-		string nextMonth(int annual_pay, int interestsPerc) {
+		string nextMonth(int annualTax, int interestsPerc) {
 			string msg;
 			if (month == 12) {
 				month = 1;
 				if (isPayed == false) {
-					removeMoney(annual_pay);
-					msg = "Le spese di gestione sono state pagate automaticamente.\n";
+					removeMoney(annualTax);
+					msg = "The annual tax was payed automatically\n";
 				}
 				else
 					isPayed = 0;
@@ -82,7 +82,7 @@ class Account {
 
 			interests(interestsPerc);
 			string a = to_string(money / 100 * interestsPerc);
-			msg += "Hai ricevuto " + a + " euro di interessi.";
+			msg += "You recieved" + a + " euros of interests\n";
 
 			return msg;
 		}
@@ -90,36 +90,36 @@ class Account {
 
 int main() {
 	float money;
-	int account_number, interests, annual_pay;
+	int account_number, interests, annualTax;
 	string man;
 
-	cout << "Inserisci i costi di gestione annua del conto: ";
-	cin  >> annual_pay;
-	cout << "Inserisci la percentuale di interessi: ";
+	cout << "Enter the annual tax cost: ";
+	cin  >> annualTax;
+	cout << "Enter the percentage of interests: ";
 	cin  >> interests;
 
-	cout << "Inserisci il numero del conto: ";
+	cout << "Enter the number of the account: ";
 	cin  >> account_number;
-	cout << "Inserisci il proprietario del conto: ";
+	cout << "Enter the proprietary of the account: ";
 	cin  >> man;
-	cout << "Inserisci il saldo del conto: ";
+	cout << "Enter the sale of the account: ";
 	cin  >> money;
 
 	Account account(account_number, man, money);
 
 	int r;
 	float input;
-	string monthName[] = { "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+	string monthName[] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	do {
-		cout << "benvenuto " << account.getMan() << " (" << account.getAccount_number() << ")\n";
-		cout << "il mese di oggi è: " << monthName[account.getMonth() - 1] << "\n";
-		cout << "1. Deposita\n";
-		cout << "2. Preleva\n";
-		cout << "3. Visualizza saldo\n";
-		cout << "4. Prossimo mese\n";
+		cout << "Welcome " << account.getMan() << " (" << account.getAccount_number() << ")\n";
+		cout << "The month is: " << monthName[account.getMonth() - 1] << "\n";
+		cout << "1. Deposit\n";
+		cout << "2. Pickup\n";
+		cout << "3. View sale\n";
+		cout << "4. Next month\n";
 		if ((account.getIsPayed() == false) && (account.getMonth() >= 11))
-			cout << "5. Paga i costi di gestione annua\n";
-		cout << "0. Esci\n";
+			cout << "5. Pay the annual tax\n";
+		cout << "0. exit\n";
 		cin  >> r;
 
 		switch (r) {
@@ -139,11 +139,11 @@ int main() {
 				break;
 			case 4:
 				system("clear");
-				cout << account.nextMonth(annual_pay, interests) << "\n";
+				cout << account.nextMonth(annualTax, interests) << "\n";
 				break;
 			case 5:
 				system("clear");
-				cout << account.payAnnualCosts(annual_pay) << "\n";
+				cout << account.payAnnualCosts(annualTax) << "\n";
 				break;
 		}
 	} while (r != 0);
