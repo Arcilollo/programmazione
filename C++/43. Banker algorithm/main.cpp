@@ -2,97 +2,49 @@
 
 using namespace std;
 
-int findMinPos(int v[], int n) {
-	int min;
-	int iMin;
-	for (int i = 0; (i < n) && (min == 0); i++) {
-		min = v[i];
-		iMin = i;
-	}
-	for (int i = 1; i < n; i++) {
-		if (v[i] <= min) {
-			if (v[i] != 0) {
-				min = v[i];
-				iMin = i;
-			}
+void zeroM(int M[][100], int n, int m) {	// Funzione per azzerare una matrice
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			M[i][j] = 0;
 		}
 	}
-
-	return iMin;
 }
 
-void viewInfo(int Aproc[], int Rproc[], int nProc, int freeRes, int maxRes) {
-	cout << "Risorse disponibili: " << freeRes << " / " << maxRes << "\n";
-
-	cout << "Risorse assegnate:\n";
-	for (int i = 0; i < nProc; i++) {
-		cout << "P" << i+1 << ": " << Aproc[i] << "\n";
-	}
-
-	cout << "Risorse da richiedere:\n";
-	for (int i = 0; i < nProc; i++) {
-		cout << "P" << i+1 << ": " << Rproc[i] << "\n";
-	}
-	cout << "\n";
-
-}
-
-void avanti(int Aproc[], int Rproc[], int nProc, int &freeRes, int maxRes) {
-	int m = findMinPos(Rproc, nProc);
-
-	Aproc[m] += Rproc[m];
-	freeRes -= Rproc[m];
-	Rproc[m] = 0;
-
-	viewInfo(Aproc, Rproc, nProc, freeRes, maxRes);
-
-	freeRes += Aproc[m];
-	Aproc[m] = 0;
-
-	viewInfo(Aproc, Rproc, nProc, freeRes, maxRes);
-}
-
-void assegnazioni(int proc[], int nProc, int &freeRes) {
-	for (int i = 0; i < nProc; i++) {
-		cout << "Inserisci risorse assegnate a P" << i+1 << ": ";
-		cin  >> proc[i];
-		freeRes -= proc[i];
+void setFree(int free[], int m) {	// Inserimento del numero di instanze
+	for (int i = 0; i < m; i++) {
+		cout << "Inserisci quante instanze ci sono in R" << i+1 << ": ";
+		cin  >> free[i];
 	}
 }
 
-void richieste(int proc[], int nProc) {
-	for (int i = 0; i < nProc; i++) {
-		cout << "Inserisci richieste rimanenti da parte di P" << i+1 << ": ";
-		cin  >> proc[i];
+void setMax(int max[][100], int n, int m) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cout << "Inserisci quante risorse chiede P" << i+1 << " ad R" << j+1 << ": ";
+			cin  >> max[i][j];
+		}
 	}
 }
 
 int main() {
-	int nProc, maxRes;
-	int freeRes;
+	int m;			// Quantità di risorse
+	int n;			// Quantità processi
 
-	cout << "Inserisci il numero di processi: ";
-	cin  >> nProc;
-	cout << "Inserisci la quantità di instanze di R1: ";
-	cin  >> maxRes;
+	cout << "Inserire il numero di processi: ";
+	cin  >> n;
+	cout << "Inserire il numero delle risorse: ";
+	cin  >> m;
 
-	freeRes = maxRes;
-	int Aproc[nProc];
-	int Rproc[nProc];
+	int free[m];			// Instanze disponibili
+	int max[n][100];		// Numero massimo di instanze
+	int allocated[n][100];		// Instanze assegnate
+	int nec[n][100];		// max[][] - allocated[]
 
-	assegnazioni(Aproc, nProc, freeRes);
-	richieste(Rproc, nProc);
+	setFree(free, m);
+	setMax(max, n, m);
+	zeroM(allocated, n, m);
+	zeroM(nec, n, m);
 
-	int choice;
-	do {
-		cout << "Cosa vuoi fare?:\n";
-		cout << "1. Avanti\n";
-		cout << "0. Esci\n";
-		cin  >> choice;
-		if (choice == 1) {
-			avanti(Aproc, Rproc, nProc, freeRes, maxRes);
-		}
-	} while (choice != 0);
+	int safe[n];
 
-	return 0;
 }

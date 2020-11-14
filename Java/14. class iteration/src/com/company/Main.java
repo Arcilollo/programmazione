@@ -6,14 +6,22 @@ public class Main {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		String a = "Roma";
-		int b = 2020;
-		String c = "boeing";
-		int d = 177013;
-		String e = "Alitalia";
+		String location, model, airline;
+		int date, id;
 
-		Airplane air1 = new Airplane (c, d, e);
-		Ticket tick1 = new Ticket(a, b);
+		System.out.print("Inserisci la località del biglietto: ");
+		location = scan.next();
+		System.out.print("Inserisci la data del biglietto: ");
+		date = scan.nextInt();
+		System.out.print("Inserisci il modello dell'aereo: ");
+		model = scan.next();
+		System.out.print("Inserisci l'ID dell'aereo: ");
+		id = scan.nextInt();
+		System.out.print("Inserisci la compagnia aerea: ");
+		airline = scan.next();
+
+		Airplane air1 = new Airplane (model, id, airline);
+		Ticket tick1 = new Ticket(location, date);
 		tick1.setAirplane(air1);
 
 		Ticket tick2 = new Ticket("Parigi", 2020, air1);
