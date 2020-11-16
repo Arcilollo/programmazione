@@ -1,6 +1,9 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
+
+ifstream fin("input.txt");
 
 void printM(int max[][100], int n, int m) {
 	for (int i = 0; i < n; i++) {
@@ -13,16 +16,16 @@ void printM(int max[][100], int n, int m) {
 
 void setFree(int free[], int m) {	// Inserimento del numero di instanze
 	for (int i = 0; i < m; i++) {
-		cout << "Inserisci quante instanze sono disponibili in R" << i+1 << ": ";
-		cin  >> free[i];
+		//cout << "Inserisci quante instanze sono disponibili in R" << i+1 << ": ";
+		fin  >> free[i];
 	}
 }
 
 void setAllocated(int max[][100], int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			cout << "Inserisci quante risorse sono assegnate a P" << i+1 << " da R" << j+1 << ": ";
-			cin  >> max[i][j];
+			//cout << "Inserisci quante risorse sono assegnate a P" << i+1 << " da R" << j+1 << ": ";
+			fin  >> max[i][j];
 		}
 	}
 }
@@ -30,8 +33,8 @@ void setAllocated(int max[][100], int n, int m) {
 void setMax(int max[][100], int n, int m) {
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
-			cout << "Inserisci quante risorse chiede P" << i+1 << " ad R" << j+1 << ": ";
-			cin  >> max[i][j];
+			//cout << "Inserisci quante risorse chiede P" << i+1 << " ad R" << j+1 << ": ";
+			fin  >> max[i][j];
 		}
 	}
 }
@@ -54,10 +57,10 @@ int main() {
 	int m;			// Quantità di risorse
 	int n;			// Quantità processi
 
-	cout << "Inserire il numero di processi: ";
-	cin  >> n;
-	cout << "Inserire il numero delle risorse: ";
-	cin  >> m;
+	//cout << "Inserire il numero di processi: ";
+	fin  >> n;
+	//cout << "Inserire il numero delle risorse: ";
+	fin  >> m;
 
 	int free[m];			// Instanze disponibili
 	int max[n][100];		// Numero massimo di instanze
@@ -67,24 +70,29 @@ int main() {
 	setFree(free, m);
 	setMax(max, n, m);
 	setAllocated(allocated, n, m);
+	calculateNec(nec, n, m, max, allocated);
+
+	printM(nec, n, m);
 
 	int safeSeq[n], safeindex = 0; 	// Array che memorizza la sequenza sicura
 	bool safe;			// variabile che serve per vedere se il processo può entrare nella sequenza sicura o no
 
 	for (int i = 0; safeindex < n; i++) {
 		safe = true;
+		int zeroCount = 0;
 		for (int j = 0; j < m; j++) {
-			int zeroCount = 0;
-			if (nec[i][j] > free[j]) {
+			if (nec[i][j] > free[j])
 				safe = false;
-				cout << nec[i][j] << " > " << free[j];
-			}
 
 			if (nec[i][j] == 0)
 				zeroCount++;
 			if (zeroCount == m)
 				safe = false;
 		}
+		if (safe == true)
+			cout << "P" << i << " è safe\n";
+		else
+			cout << "P" << i << " NON è safe\n";
 		if (safe == true) {
 			for (int j = 0; j < m; j++) {
 				allocated[i][j] += nec[i][j];
@@ -99,8 +107,7 @@ int main() {
 			safeindex++;
 		}
 		if (i == n - 1)
-			i = 0;
-		cout << safe << "\n";
+			i = -1;
 	}
 
 	cout << "la sequenza sicura è: \n";
