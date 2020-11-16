@@ -13,6 +13,7 @@ public class Main {
 		location = scan.next();
 		System.out.print("Inserisci la data del biglietto: ");
 		date = scan.nextInt();
+
 		System.out.print("Inserisci il modello dell'aereo: ");
 		model = scan.next();
 		System.out.print("Inserisci l'ID dell'aereo: ");
@@ -20,7 +21,9 @@ public class Main {
 		System.out.print("Inserisci la compagnia aerea: ");
 		airline = scan.next();
 
-		Airplane air1 = new Airplane (model, id, airline);
+
+		Pilot pilot = new Pilot("Mauro", "Rossi", 10, 357);
+		Airplane air1 = new Airplane (model, id, airline, pilot);
 		Ticket tick1 = new Ticket(location, date);
 		tick1.setAirplane(air1);
 
@@ -30,7 +33,7 @@ public class Main {
 		System.out.println(tick1.toString());
 		System.out.println(tick2.toString());
 
-		tick2Copy.setAirplane(new Airplane(air1.getModel(), air1.getId(), "CompagniaEpica"));
+		tick2Copy.setAirplane(new Airplane(air1.getModel(), air1.getId(), "CompagniaEpica", pilot));
 
 		System.out.println(tick2.toString());
 		System.out.println(tick2Copy.toString());
