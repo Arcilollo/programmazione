@@ -72,14 +72,17 @@ int main() {
 	setAllocated(allocated, n, m);
 	calculateNec(nec, n, m, max, allocated);
 
-	printM(nec, n, m);
-
 	int safeSeq[n], safeindex = 0; 	// Array che memorizza la sequenza sicura
 	bool safe;			// variabile che serve per vedere se il processo può entrare nella sequenza sicura o no
 
 	for (int i = 0; safeindex < n; i++) {
 		safe = true;
+
 		int zeroCount = 0;
+		// Se nec[i][] sarà tutto 0 vuol dire che il processo si è già evoluto
+		// zeroCount aumenterà ogni volta che nec[i][j] sarà 0
+		// Se zeroCount sarà uguale al numero di risorse il processo verà saltato
+
 		for (int j = 0; j < m; j++) {
 			if (nec[i][j] > free[j])
 				safe = false;
@@ -89,10 +92,6 @@ int main() {
 			if (zeroCount == m)
 				safe = false;
 		}
-		if (safe == true)
-			cout << "P" << i << " è safe\n";
-		else
-			cout << "P" << i << " NON è safe\n";
 		if (safe == true) {
 			for (int j = 0; j < m; j++) {
 				allocated[i][j] += nec[i][j];
