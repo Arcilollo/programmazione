@@ -14,8 +14,9 @@ public class Main {
 			System.out.println("1. Aggiungi libro");
 			System.out.println("2. Rimuovi libro");
 			System.out.println("3. Visualizza elenco libri");
-			System.out.println("4. Ordina per nome");
-			System.out.println("5. Ordina per autore");
+			System.out.println("4  Sconta un libro");
+			System.out.println("5. Ordina per nome");
+			System.out.println("6. Ordina per autore");
 			System.out.println("0. Esci");
 			r = scan.nextInt();
 
@@ -41,9 +42,16 @@ public class Main {
 					System.out.println(bookshelf.toString());
 					break;
 				case 4:
-					bookshelf.sortByName();
+					System.out.print("Inserisci il nome del libro da scontare: ");
+					String titleToScount = scan.next();
+					System.out.print("Inserisci lo sconto in percentuale: ");
+					float scount = scan.nextFloat();
+					bookshelf.discountBook(titleToScount, scount);
 					break;
 				case 5:
+					bookshelf.sortByName();
+					break;
+				case 6:
 					bookshelf.sortByAuthor();
 					break;
 			}

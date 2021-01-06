@@ -9,17 +9,17 @@ public class Bookshelf {
 	}
 
 	public void addBook(Book b) {
-		if (cont > books.length) {
+		if (cont < books.length) {
 			books[cont] = b;
 			cont++;
 		}
 	}
 
-	public void removeBook(String a) {
+	public void removeBook(String bookName) {
 		boolean found = false;
 		int startIndex = 0;
 		for (int i = 0; i < cont; i++) {
-			if (books[i].getTitle().equals(a)) {
+			if (books[i].getTitle().equals(bookName)) {
 				startIndex = i;
 				found = true;
 			}
@@ -33,6 +33,22 @@ public class Bookshelf {
 			}
 			cont--;
 		}
+	}
+
+	public void discountBook(String bookName, float scount) {
+		boolean found = false;
+		int foundIndex = 0;
+		for (int i = 0; i < cont; i++) {
+			if (books[i].getTitle().equals(bookName)) {
+				foundIndex = i;
+				found = true;
+			}
+		}
+		if (found == true) {
+			float scountedPrice = (books[foundIndex].getCost() / 100) * (100 - scount);
+			books[foundIndex].setCost(scountedPrice);
+		}
+
 	}
 
 	public void sortByName () {

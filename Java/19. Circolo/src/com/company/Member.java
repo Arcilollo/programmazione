@@ -28,4 +28,4 @@ public class Member {
 	public boolean isBodyBuilding() {
 		return isBodyBuilding;
 	}
-
+}

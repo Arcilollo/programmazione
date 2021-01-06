@@ -32,7 +32,7 @@ public class Club {
 			}
 		}
 
-		if (found == true) {
+		if (found) {
 			int fee = 0;
 			if (members[indexFound].isSwimming())
 				fee += 25;
