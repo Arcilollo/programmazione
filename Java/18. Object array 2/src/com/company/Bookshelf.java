@@ -24,7 +24,7 @@ public class Bookshelf {
 				found = true;
 			}
 		}
-		if (found == true) {
+		if (found) {
 			for (int i = startIndex; i < cont - 1; i++) {
 				books[i].setTitle(books[i + 1].getTitle());
 				books[i].setAuthor(books[i + 1].getAuthor());
@@ -44,14 +44,15 @@ public class Bookshelf {
 				found = true;
 			}
 		}
-		if (found == true) {
+
+		if (found) {
 			float scountedPrice = (books[foundIndex].getCost() / 100) * (100 - scount);
 			books[foundIndex].setCost(scountedPrice);
 		}
 
 	}
 
-	public void sortByName () {
+	public void sortByTitle() {
 		for (int i = 0; i < cont; i++)
 			for (int j = 0; j < cont; j++) {
 				char char1 = books[i].getTitle().charAt(0);
@@ -75,7 +76,7 @@ public class Bookshelf {
 			}
 	}
 
-	public void sortByAuthor () {
+	public void sortByAuthor() {
 		for (int i = 0; i < cont; i++)
 			for (int j = 0; j < cont; j++) {
 				char char1 = books[i].getAuthor().charAt(0);
@@ -102,11 +103,11 @@ public class Bookshelf {
 	public String toString() {
 		String msg = "I libri all'interno dello scaffale sono:\n";
 		for (int i = 0; i < cont; i++) {
-			msg += "Libro " + i + ":\n";
+			msg += "Libro " + i+1 + ":\n";
 			msg += "Titolo: " + books[i].getTitle() + "\n";
-			msg += "Autore: " +books[i].getAuthor() + "\n";
+			msg += "Autore: " + books[i].getAuthor() + "\n";
 			msg += "Pagine: " + books[i].getPages() + "\n";
-			msg += "Prezzo: " +books[i].getCost() + "\n\n";
+			msg += "Prezzo: " + books[i].getCost() + "\n\n";
 		}
 		return msg;
 	}
