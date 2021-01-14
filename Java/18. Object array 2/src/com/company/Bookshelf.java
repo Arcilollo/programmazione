@@ -58,6 +58,7 @@ public class Bookshelf {
 				char char1 = books[i].getTitle().charAt(0);
 				char char2 = books[j].getTitle().charAt(0);
 				if (char1 < char2) {
+					/*
 					String tmp1 = books[i].getTitle();
 					String tmp2 = books[i].getAuthor();
 					int tmp3 = books[i].getPages();
@@ -72,6 +73,10 @@ public class Bookshelf {
 					books[j].setAuthor(tmp2);
 					books[j].setPages(tmp3);
 					books[j].setCost(tmp4);
+					 */
+					Book tmp = books[i];
+					books[i] = books[j];
+					books[j] = tmp;
 				}
 			}
 	}
@@ -82,6 +87,7 @@ public class Bookshelf {
 				char char1 = books[i].getAuthor().charAt(0);
 				char char2 = books[j].getAuthor().charAt(0);
 				if (char1 < char2) {
+					/*
 					String tmp1 = books[i].getTitle();
 					String tmp2 = books[i].getAuthor();
 					int tmp3 = books[i].getPages();
@@ -96,6 +102,10 @@ public class Bookshelf {
 					books[j].setAuthor(tmp2);
 					books[j].setPages(tmp3);
 					books[j].setCost(tmp4);
+					*/
+					Book tmp = books[i];
+					books[i] = books[j];
+					books[j] = tmp;
 				}
 			}
 	}
@@ -103,7 +113,7 @@ public class Bookshelf {
 	public String toString() {
 		String msg = "I libri all'interno dello scaffale sono:\n";
 		for (int i = 0; i < cont; i++) {
-			msg += "Libro " + i+1 + ":\n";
+			msg += "Libro " + i + ":\n";
 			msg += "Titolo: " + books[i].getTitle() + "\n";
 			msg += "Autore: " + books[i].getAuthor() + "\n";
 			msg += "Pagine: " + books[i].getPages() + "\n";

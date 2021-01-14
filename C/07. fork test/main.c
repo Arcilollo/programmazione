@@ -5,19 +5,19 @@
 // getpid() consente di conoscere il pid del figlio
 
 int main() {
-	int pidF = fork();
+	int proc2 = fork();
 
-	if (pidF == 0) {
-		printf("processo figlio\n");
+	if (proc2 == 0) {
+		printf("processo figlio:\n");
 		printf("il mio pid è %d\n", getpid());
 		printf("il pid di mio padre è %d\n", getppid());
 	}
-	else if (pidF > 0) {
-		printf("processo padre\n");
+	else {
+		printf("processo padre:\n");
 		printf("il mio pid è %d\n", getpid());
-		printf("il pid di mio padre è %d\n", getppid());
+		// printf("il pid di mio padre è %d\n", getppid());
 	}
-	sleep(10);
+	sleep(100);
 
 	return 0;
 }
