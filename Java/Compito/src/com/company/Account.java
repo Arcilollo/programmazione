@@ -13,6 +13,8 @@ public class Account {
 		this.balance = balance;
 	}
 
+	public Account () {}
+
 	public String getName() {
 		return name;
 	}
@@ -37,12 +39,12 @@ public class Account {
 
 	public String pick(float balance) {
 		String msg;
-		if (this.balance < balance) {
+		if (this.balance > balance) {
 			this.balance -= balance;
-			msg = "Non hai abbastanza soldi per prelevare\n";
+			msg = "Hai prelevato " + balance + " euro\n";
 		}
 		else {
-			msg = "Hai depositato " + balance + " euro\n";
+			msg = "Non hai abbastanza soldi per prelevare\n";
 		}
 
 		return msg;

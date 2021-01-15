@@ -28,6 +28,16 @@ public class Filiale {
 		return filialeName;
 	}
 
+	public Account getAccount(int id) {
+		Account rAccount = new Account();
+		for (int i = 0; i < cont; i++) {
+			if (accounts[i].getId() == id) {
+				rAccount = accounts[i];
+			}
+		}
+		return rAccount;
+	}
+
 	public String toString() {
 		String msg = "Lista clienti dentro " + getFilialeName() + "\n";
 		for (int i = 0; i < cont; i++) {
