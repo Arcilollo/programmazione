@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Main {
 	static Scanner scan = new Scanner(System.in);
 	public static void main(String[] args) {
 		System.out.print("Inserisci il nome del circolo: ");

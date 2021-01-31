@@ -3,10 +3,11 @@
 #include <unistd.h>
 
 int main() {
-	int romolo = fork();
-	int remo;
+	int romolo, remo;
 
-	if (romolo != 0) {
+	romolo = fork();
+
+	if (romolo > 0) {
 		remo = fork();
 	}
 
