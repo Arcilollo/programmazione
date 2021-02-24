@@ -4,16 +4,6 @@
 using namespace std;
 
 string sort (string a, int n) {
-	/*
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < n; j++)
-			if (a[i] < a[j]) {
-				char tmp = a[i];
-				a[i] = a[j];
-				a[j] = tmp;
-			}
-	*/
-
 	for (int gap = n / 2; gap > 0; gap /= 2) {
 		for (int i = gap; i < n; i++) {
 			int temp = a[i];
