@@ -2,9 +2,9 @@ package com.company;
 
 public class Vehicle {
 	protected String plate;
-	protected int enteredDay;
+	protected Data enteredDay;
 
-	public Vehicle (String plate, int enteredDay) {
+	public Vehicle (String plate, Data enteredDay) {
 		this.plate = plate;
 		this.enteredDay = enteredDay;
 	}
@@ -13,7 +13,7 @@ public class Vehicle {
 		return plate;
 	}
 
-	public int getEnteredDay() {
+	public Data getEnteredDay() {
 		return enteredDay;
 	}
 

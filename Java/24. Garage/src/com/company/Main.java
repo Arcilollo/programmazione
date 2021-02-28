@@ -14,14 +14,27 @@ public class Main {
 		int priceCar = scan.nextInt();
 		System.out.print("Inserisci il prezzo per i motocicli: ");
 		int priceBike = scan.nextInt();
+		System.out.print("Inserisci l'altezza massima del veicolo: ");
+		float maxHeight = scan.nextFloat();
 
-		Garage g1 = new Garage(maxCar, maxBike, priceCar, priceBike);
+		Garage g1 = new Garage(maxCar, maxBike, priceCar, priceBike, maxHeight);
 
-		int today = 1;
+		System.out.print("Inserisci giorno: ");
+		int day = scan.nextInt();
+		System.out.print("Inserisci mese: ");
+		int month = scan.nextInt();
+		System.out.print("Inserisci anno: ");
+		int year = scan.nextInt();
+
+		Data today = new Data(day, month, year);
+
+		System.out.println(today.getDay());
+		System.out.println(today.getMonth());
+		System.out.println(today.getYear());
 
 		int r;
 		do {
-			System.out.println("Oggi é il giorno " + today + ". Cosa vuoi fare?");
+			System.out.println("Oggi é il giorno " + today.toString() + ". Cosa vuoi fare?");
 			System.out.println("1. Aggiungi un veicolo");
 			System.out.println("2. Rimuovi un veicolo");
 			System.out.println("3. Visualizza lista veicoli");
@@ -40,10 +53,12 @@ public class Main {
 
 					switch (r1) {
 						case 1:
-							System.out.println(g1.addVeichle(new Car(plate, today)));
+							System.out.print("Inserisci l'altezza dell'auto: ");
+							float height1 = scan.nextFloat();
+							System.out.println(g1.addVeichle(new Car(plate, height1, new Data(today.getDay(), today.getMonth(), today.getYear()))));
 							break;
 						case 2:
-							System.out.println(g1.addVeichle(new Motorbike(plate, today)));
+							System.out.println(g1.addVeichle(new Motorbike(plate, new Data(today.getDay(), today.getMonth(), today.getYear()))));
 							break;
 					}
 
@@ -58,7 +73,7 @@ public class Main {
 					System.out.println(g1.toString());
 					break;
 				case 4:
-					today++;
+					today.nextDay();
 					break;
 			}
 		} while (r != 0);

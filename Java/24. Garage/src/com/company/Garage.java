@@ -7,15 +7,20 @@ public class Garage {
 	private int contMotorbike = 0;
 	private int priceCars;
 	private int priceMotorbike;
+	private float maxHeight;
 
-	public Garage (int nCars, int nMotorbikes, int priceCars, int priceMotorbike) {
+	public Garage (int nCars, int nMotorbikes, int priceCars, int priceMotorbike, float maxHeight) {
 		this.cars = new Car[nCars];
 		this.motorbikes = new Motorbike[nMotorbikes];
 		this.priceCars = priceCars;
 		this.priceMotorbike = priceMotorbike;
+		this.maxHeight = maxHeight;
 	}
 
 	public String addVeichle(Car car) {
+		if (car.getHeight() >= maxHeight)
+			return "L'auto é troppo alta";
+
 		if (contCars < cars.length) {
 			cars[contCars] = car;
 			contCars++;
@@ -36,10 +41,10 @@ public class Garage {
 			return "Non c'é abbastanza spazio";
 	}
 
-	public String removeVehicle(String plate, int today) {
+	public String removeVehicle(String plate, Data today) {
 		for (int i = 0; i < contCars; i++) {
 			if (cars[i].getPlate().equals(plate)) {
-				int payed = (today + 1 - cars[i].getEnteredDay()) * priceCars;
+				int payed = (today.getDifference(cars[i].getEnteredDay()) + 1) * priceCars;
 
 				for (int j = i; j < contCars; j++) {
 					cars[i] = cars[j];
@@ -52,7 +57,7 @@ public class Garage {
 
 		for (int i = 0; i < contMotorbike; i++) {
 			if (motorbikes[i].getPlate().equals(plate)) {
-				int payed = (today + 1 - motorbikes[i].getEnteredDay()) * priceMotorbike;
+				int payed = (today.getDifference(motorbikes[i].getEnteredDay()) + 1) * priceMotorbike;
 
 				for (int j = i; j < contMotorbike; j++) {
 					motorbikes[i] = motorbikes[j];
