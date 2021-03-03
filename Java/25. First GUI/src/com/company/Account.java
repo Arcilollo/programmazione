@@ -1,8 +1,8 @@
 package com.company;
 
 public class Account {
-	int accountCode;
-	float money;
+	private int accountCode;
+	private float money;
 
 	public Account (int accountCode) {
 		this.accountCode = accountCode;
