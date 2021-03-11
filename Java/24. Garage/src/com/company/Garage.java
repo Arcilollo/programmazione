@@ -1,8 +1,8 @@
 package com.company;
 
 public class Garage {
-	private Car cars[];
-	private Motorbike motorbikes[];
+	private Car carsList[];
+	private Motorbike motorbikesList[];
 	private int contCars = 0;
 	private int contMotorbike = 0;
 	private int priceCars;
@@ -10,8 +10,8 @@ public class Garage {
 	private float maxHeight;
 
 	public Garage (int nCars, int nMotorbikes, int priceCars, int priceMotorbike, float maxHeight) {
-		this.cars = new Car[nCars];
-		this.motorbikes = new Motorbike[nMotorbikes];
+		this.carsList = new Car[nCars];
+		this.motorbikesList = new Motorbike[nMotorbikes];
 		this.priceCars = priceCars;
 		this.priceMotorbike = priceMotorbike;
 		this.maxHeight = maxHeight;
@@ -21,33 +21,33 @@ public class Garage {
 		if (car.getHeight() >= maxHeight)
 			return "L'auto é troppo alta";
 
-		if (contCars < cars.length) {
-			cars[contCars] = car;
+		if (contCars < carsList.length) {
+			carsList[contCars] = car;
 			contCars++;
-			return "Auto inserita";
+			return "L'auto é entrata nel parcheggio";
 		}
 		else
-			return "Non c'é abbastanza spazio";
+			return "Non c'é abbastanza spazio per poter far entrare l'auto";
 
 	}
 
 	public String addVeichle(Motorbike moto) {
-		if (contMotorbike < motorbikes.length) {
-			motorbikes[contMotorbike] = moto;
+		if (contMotorbike < motorbikesList.length) {
+			motorbikesList[contMotorbike] = moto;
 			contMotorbike++;
-			return "Moto inserita";
+			return "La moto é entrata nel parcheggio";
 		}
 		else
-			return "Non c'é abbastanza spazio";
+			return "Non c'é abbastanza spazio per poter far entrare la moto";
 	}
 
 	public String removeVehicle(String plate, Data today) {
 		for (int i = 0; i < contCars; i++) {
-			if (cars[i].getPlate().equals(plate)) {
-				int payed = (today.getDifference(cars[i].getEnteredDay()) + 1) * priceCars;
+			if (carsList[i].getPlate().equals(plate)) {
+				int payed = (today.getDifference(carsList[i].getEnteredDay()) + 1) * priceCars;
 
 				for (int j = i; j < contCars; j++) {
-					cars[i] = cars[j];
+					carsList[i] = carsList[j];
 				}
 				contCars--;
 
@@ -56,11 +56,11 @@ public class Garage {
 		}
 
 		for (int i = 0; i < contMotorbike; i++) {
-			if (motorbikes[i].getPlate().equals(plate)) {
-				int payed = (today.getDifference(motorbikes[i].getEnteredDay()) + 1) * priceMotorbike;
+			if (motorbikesList[i].getPlate().equals(plate)) {
+				int payed = (today.getDifference(motorbikesList[i].getEnteredDay()) + 1) * priceMotorbike;
 
 				for (int j = i; j < contMotorbike; j++) {
-					motorbikes[i] = motorbikes[j];
+					motorbikesList[i] = motorbikesList[j];
 				}
 				contMotorbike--;
 
@@ -74,12 +74,12 @@ public class Garage {
 	public String toString() {
 		String msg = "lista Automobili:\n";
 		for (int i = 0; i < contCars; i++) {
-			msg += cars[i].toString();
+			msg += carsList[i].toString();
 		}
 
 		msg += "lista Moto:\n";
 		for (int i = 0; i < contMotorbike; i++) {
-			msg += motorbikes[i].toString();
+			msg += motorbikesList[i].toString();
 		}
 
 		return msg;
