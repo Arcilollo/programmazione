@@ -22,9 +22,9 @@ void fillBuffer(int producer[], int buffer[], int dim) {
 	}
 }
 
-void emptyBuffer(int consoomer[], int buffer[], int dim) {
+void emptyBuffer(int consumer[], int buffer[], int dim) {
 	for (int i = 0; i < dim; i++) {
-		consoomer[i] = buffer[i];
+		consumer[i] = buffer[i];
 		buffer[i] = 0;
 	}
 }
@@ -53,13 +53,13 @@ bool isEmpty(int buffer[], int bufferDim) {
 int main() {
 	int producer[8] = {0};
 	int buffer[8] = {0};
-	int consoomer[8] = {0};
+	int consumer[8] = {0};
 
 	int r;
 	do {
 		system("clear");
 		cout << "Prod\tBuff\tCons\n";
-		viewArrays(producer, buffer, consoomer, 8);
+		viewArrays(producer, buffer, consumer, 8);
 		cout << "1. Riempi il buffer (produttore)\n";
 		cout << "2. Svuota il buffer (consumatore)\n";
 		cout << "3. Nuovi valori da inserire nel buffer (nuovo produttore)\n";
@@ -74,7 +74,7 @@ int main() {
 				break;
 			case 2:
 				if (isFull(buffer, 8))
-					emptyBuffer(consoomer, buffer, 8);
+					emptyBuffer(consumer, buffer, 8);
 				break;
 			case 3:
 				cinArray(producer, 8);

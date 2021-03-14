@@ -1,0 +1,29 @@
+Inizio
+	Nuovo array intero Produttore[] inizializzato a 0
+	Nuovo array intero Buffer[] inizializzato a 0
+	Nuovo array intero Consumatore[] inizializzato a 0
+
+	Dichiaro r come intero
+
+	Ripeti
+		<visualizza i 3 array>
+		// 1. fa riempire completamente il buffer al produttore
+		// 2. fa svuotare completamente il buffer al consumatore
+		// 3. dati da inserire nel buffer
+		// 0. esce
+		inserimento di r
+
+		se r = 1
+			se il buffer é vuoto
+				<riempi il buffer>
+
+		altrimenti se r = 2
+			se il buffer é pieno
+				<Svuota il buffer nel consumatore>
+
+		altrimenti se r = 3
+			<Riempi il produttore>
+
+	Finché r = 0
+
+Fine
