@@ -3,7 +3,7 @@
 
 Funzione lock()		// mette il semaforo a rosso
 Inizio
-	esegui
+	ripeti
 	mentre semaforo = 0
 	semaforo <- 1
 Fine
@@ -13,28 +13,34 @@ Inizio
 	semaforo <- 0
 Fine
 
+
+
 Semaforo: int
 Semaforo <- 0		// dichiaro e inizializzo il semaforo a verde
+
+
 
 Inizio
 	Inserisci grandezzaBuffer
 
-	Nuovo array intero Buffer[grandezzaBuffer] inizializzato a 0
+	Nuovo array intero Buffer[grandezzaBuffer] inizializzato a 0 (vuoto)
+	// Con il valore zero viene intesa una posizione vuota
 
 	Crea due processi, produttore e consumatore
 
 	Se si tratta del processo produttore
-		ripeti per sempre
+		ripeti per sempre	// Ciclo infinito, non va bene
 			lock()
-			se il buffer é vuoto
-				<riempi tutto l'array buffer>
+			se l'array buffer contiene solo valori 0
+				<riempi tutte le posizioni l'array buffer>
 			unlock()
 
 	Altrimenti se si tratta del processo consumatore
-		ripeti per sempre
+		ripeti per sempre	// Ciclo infinito, non va bene
 			lock();
-			se il buffer é pieno
-				<Svuota tutto l'array buffer>
+			se l'array buffer contiene contiene tutti valori diversi da 0
+				<Scrivi tutto l'array buffer>
+				<Inserisci tutti
 			unlock();
 
 Fine
