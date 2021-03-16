@@ -1,0 +1,40 @@
+// semaforo = 0 -> verde
+// semaforo = 1 -> rosso
+
+Funzione lock()		// mette il semaforo a rosso
+Inizio
+	esegui
+	mentre semaforo = 0
+	semaforo <- 1
+Fine
+
+Funzione unlock()	// mette il semaforo a verde
+Inizio
+	semaforo <- 0
+Fine
+
+Semaforo: int
+Semaforo <- 0		// dichiaro e inizializzo il semaforo a verde
+
+Inizio
+	Inserisci grandezzaBuffer
+
+	Nuovo array intero Buffer[grandezzaBuffer] inizializzato a 0
+
+	Crea due processi, produttore e consumatore
+
+	Se si tratta del processo produttore
+		ripeti per sempre
+			lock()
+			se il buffer é vuoto
+				<riempi tutto l'array buffer>
+			unlock()
+
+	Altrimenti se si tratta del processo consumatore
+		ripeti per sempre
+			lock();
+			se il buffer é pieno
+				<Svuota tutto l'array buffer>
+			unlock();
+
+Fine
