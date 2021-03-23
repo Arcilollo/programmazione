@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 int main() {
-	int pid1;
+	int pid1 = 1;
 	int nForks;
 
 	int pid_wait, status;
@@ -17,12 +18,12 @@ int main() {
 
 
 	if (pid1 == 0) {
-		printf("PID FIGLIO: %d\nPID DEL PADRE: %d\n\n", getpid(), getppid());
+		//printf("PID FIGLIO: %d\nPID DEL PADRE: %d\n\n", getpid(), getppid());
 		sleep(1);
 		exit(10);
 	}
 	else if (pid1 > 0) {
-		printf("Processo PADRE\nin attesa che il primo processo figlio termini\n");
+		printf("Processo PADRE\nin attesa che il primo processo figlio termini\n\n");
 		pid_wait = wait(&status);
 
 		/* Ultimo processo terminato
