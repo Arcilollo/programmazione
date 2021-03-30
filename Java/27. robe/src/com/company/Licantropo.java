@@ -2,37 +2,58 @@ package com.company;
 
 public class Licantropo implements Mostro, Umano{
 	private boolean isUomo, isDead;
-	protected int forzaUmano, forzaMostro;
+	protected int vitaUmano, vitaMostro;
 
-	public Licantropo(boolean luna)
-	{
+	public Licantropo(boolean luna) {
 		isUomo = !luna;
 		if (luna) {
-			forzaMostro = 15;
-			forzaUmano = 0;
+			vitaMostro = 15;
+			vitaUmano = 0;
 		}
 		else {
-			forzaUmano = 10;
-			forzaMostro = 0;
+			vitaUmano = 10;
+			vitaMostro = 0;
 		}
 	}
 
-	public String getForza () {
-		return "Forza rimanente come umano: " + forzaUmano + "\nForza rimanente come mostro: " + forzaMostro;
+	public boolean isUomo() {
+		return isUomo;
 	}
 
-	public void azzanna() {
-		if (!isUomo) {
-			forzaMostro = forzaMostro - 2;
-			if (forzaMostro <= 0)
+	public void subisciDanno(int danno) {
+		if (isUomo) {
+			vitaUmano -= danno;
+			if (vitaUmano <= 0)
+				isDead = true;
+		}
+		else {
+			vitaMostro -= danno;
+			if (vitaMostro <= 0)
 				isDead = true;
 		}
 	}
 
-	public void combatti () {
+	public String getVita() {
+		if (isUomo && !isDead)
+			return "Vita rimanente come umano: " + vitaUmano + "\n";
+		else if (!isUomo && !isDead)
+			return "Vita rimanente come mostro: " + vitaMostro + "\n";
+		else
+			return "Il licantropo é morto";
+	}
+
+	public void azzanna(Eroe e) {
+		e.subisciDanno(2);
+		if (!isUomo) {
+			if (vitaMostro <= 0)
+				isDead = true;
+		}
+	}
+
+	public void combatti(Vampiro v) {
+		v.subisciDanno(2);
 		if (isUomo) {
-			forzaUmano = forzaUmano - 3;
-			if (forzaUmano <= 0)
+			if (vitaUmano <= 0)
 				isDead = true;
 		}
 	}

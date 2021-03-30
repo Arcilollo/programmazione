@@ -1,20 +1,30 @@
 package com.company;
 
 public class Eroe implements Umano{
-	protected int forza;
+	protected int vita;
 	private boolean isDead;
 
 	public Eroe() {
-		forza= 10;
+		vita = 10;
 	}
 
-	public void combatti() {
-		forza=forza-3;
-		if (forza <= 0)
+	public void combatti(Vampiro v) {
+		v.subisciDanno(3);
+		if (vita <= 0)
 			isDead = true;
 	}
 
-	public String getForza () {
-		return "Forza rimanente come eroe: " + forza + "\n";
+	public void subisciDanno(int danno) {
+		vita -= danno;
+		if (vita <= 0)
+			isDead = true;
+	}
+
+
+	public String getVita() {
+		if (!isDead)
+			return "vita rimanente come eroe: " + vita + "\n";
+		else
+			return "l'eroe é morto\n";
 	}
 }

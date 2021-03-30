@@ -1,5 +1,5 @@
 package com.company;
 
 public interface Mostro extends Personaggio{
-	public void azzanna();
+	public void azzanna(Eroe e);
 }

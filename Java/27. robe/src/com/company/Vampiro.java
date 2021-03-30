@@ -1,20 +1,29 @@
 package com.company;
 
 public class Vampiro implements Mostro{
-	protected int forza;
+	protected int vita;
 	private boolean isDead;
 
 	public Vampiro() {
-		forza=15;
+		vita = 15;
 	}
 
-	public void azzanna() {
-		forza =forza-2;
-		if (forza <= 0)
+	public void azzanna(Eroe e) {
+		e.subisciDanno(2);
+		if (vita <= 0)
 			isDead = true;
 	}
 
-	public String getForza() {
-		return "Forza rimanente come vampiro: " + forza + "\n";
+	public void subisciDanno(int danno) {
+		vita -= danno;
+		if (vita <= 0)
+			isDead = true;
+	}
+
+	public String getVita() {
+		if (!isDead)
+			return "Vita rimanente come vampiro: " + vita + "\n";
+		else
+			return "il vampiro é morto\n";
 	}
 }
