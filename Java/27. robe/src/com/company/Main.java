@@ -1,108 +1,90 @@
 package com.company;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
 
+	public static void combatti(Personaggio attaccante, Personaggio nemico) {
+		nemico.subisciDanno(attaccante.getDanno());
+		attaccante.subisciDanno(nemico.getDanno());
+	}
+
 	public static void main(String[] args) {
-		boolean luna = false;
+		Random r = new Random();
+		boolean luna = r.nextBoolean();
 
 		Eroe e = new Eroe();
 		Licantropo l = new Licantropo(luna);
 		Vampiro v = new Vampiro();
 
+		if (luna)
+			System.out.println("La luna é piena");
+		else
+			System.out.println("La luna non é piena");
 		System.out.println("Con quale personaggio vuoi giocare?");
 		System.out.println("1. Eroe");
 		System.out.println("2. Licantropo");
 		System.out.println("3. Vampiro");
 		int r1 = sc.nextInt();
 
-		switch (r1) {
-			case 1:		// Eroe
-				int s1;
-				if (!l.isUomo()) {
-					System.out.println("Chi vuoi attaccare?");
-					System.out.println("1. Vampiro");
-					System.out.println("2. Licantropo");
-					s1 = sc.nextInt();
-				}
-				else
-					s1 = 1;
+		int r2;
+		do {
+			System.out.println("Con quale personaggio vuoi affrontare?");
+			if (r1 != 1)
+				System.out.println("1. Eroe");
+			if (r1 != 2)
+				System.out.println("2. Licantropo");
+			if (r1 != 3)
+				System.out.println("3. Vampiro");
+			System.out.println("0. Esci");
+			r2 = sc.nextInt();
 
-				switch (s1) {
-					case 1:
-						System.out.println("Quanti attacchi vuoi fare al vampiro?");
-						int attacco1 = sc.nextInt();
+			switch (r1) {
+				case 1:
+					switch (r2) {
+						case 1:
+							break;
+						case 2:
+							combatti(e, l);
+							break;
+						case 3:
+							combatti(e, v);
+							break;
+					}
+					break;
+				case 2:
+					switch (r2) {
+						case 1:
+							combatti(l, e);
+							break;
+						case 2:
+							break;
+						case 3:
+							combatti(l, v);
+							break;
+					}
+					break;
+				case 3:
+					switch (r2) {
+						case 1:
+							combatti(v, e);
+							break;
+						case 2:
+							combatti(v, l);
+							break;
+						case 3:
+							break;
+					}
+					break;
+			}
 
-						for (int i = 0; i < attacco1; i++) {
-							e.combatti(v);
-						}
+			System.out.println(e.getVita());
+			System.out.println(l.getVita());
+			System.out.println(v.getVita());
 
-						break;
-					case 2:
-						System.out.println("Quanti attacchi vuoi fare al licantropo?");
-						int attacco2 = sc.nextInt();
+		} while (r2 != 0 || );
 
-						for (int i = 0; i < attacco2; i++) {
-							e.combatti(v); // no
-						}
-
-						break;
-				}
-				break;
-
-
-			case 2:		// Licantropo
-				if (!l.isUomo()) {
-					System.out.println("Quanti attacchi vuoi fare all'eroe?");
-					int attacco3 = sc.nextInt();
-
-					for (int i = 0; i < attacco3; i++)
-						l.azzanna(e);
-				}
-				else {
-					System.out.println("Quanti attacchi vuoi fare al vampiro?");
-					int attacco3 = sc.nextInt();
-
-					for (int i = 0; i < attacco3; i++)
-						l.combatti(v);
-				}
-
-				break;
-			case 3:		// Vampiro
-				int s2;
-				if (l.isUomo()) {
-					System.out.println("Chi vuoi attaccare?");
-					System.out.println("1. Eroe");
-					System.out.println("2. Licantropo");
-					s2 = sc.nextInt();
-				}
-				else
-					s2 = 1;
-
-				switch (s2) {
-					case 1:
-						System.out.println("Quanti attacchi vuoi fare al eroe?");
-						int attacco4 = sc.nextInt();
-
-						for (int i = 0; i < attacco4; i++)
-							v.azzanna(e);
-						break;
-					case 2:
-						System.out.println("Quanti attacchi vuoi fare al licantropo?");
-						int attacco5 = sc.nextInt();
-
-						for (int i = 0; i < attacco5; i++)
-							v.azzanna(e); // no
-						break;
-				}
-
-				break;
-		}
-
-		System.out.println(e.getVita());
-		System.out.println(l.getVita());
-		System.out.println(v.getVita());
 	}
 }

@@ -1,11 +1,12 @@
 package com.company;
 
-public class Eroe implements Umano{
-	protected int vita;
+public class Eroe implements Umano {
+	protected int vita, danno;
 	private boolean isDead;
 
 	public Eroe() {
 		vita = 10;
+		danno = 3;
 	}
 
 	public void combatti(Vampiro v) {
@@ -20,6 +21,9 @@ public class Eroe implements Umano{
 			isDead = true;
 	}
 
+	public int getDanno() {
+		return danno;
+	}
 
 	public String getVita() {
 		if (!isDead)

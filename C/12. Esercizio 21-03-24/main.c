@@ -17,27 +17,26 @@ int main() {
 
 
 
-
-	if (F1 == 0) {					// Parte eseguita da F1
+	if (F1 == 0) {	// Parte eseguita da F1
 		sleep(1);
 		printf("SONO IL PROCESSO F1\n");
 		printf("Il mio PID é: %d\n", getpid());
 		printf("Mio padre ha PID: %d\n\n", getppid());
 
-		// Creazione Nipoti
+		// Creazione dei due nipoti
 		N11 = fork();
 		if (N11 > 0) {
 			N12 = fork();
 		}
 
-		if (N11 == 0) { // Nipote 1
+		if (N11 == 0) {	// Nipote 1
 			sleep(1);
 			printf("SONO IL PROCESSO N11\n");
 			printf("Il mio PID é: %d\n", getpid());
 			printf("Mio padre ha PID: %d\n\n", getppid());
 			exit(1);
 		}
-		else if (N12 == 0) { // Nipote 2
+		else if (N12 == 0) {	// Nipote 2
 			sleep(2);
 			printf("SONO IL PROCESSO N12\n");
 			printf("Il mio PID é: %d\n", getpid());
@@ -79,8 +78,6 @@ int main() {
 	else {							// Errore nella fork
 		printf("Errore nella fork()\n");
 	}
-
-
 
 	return 0;
 }
