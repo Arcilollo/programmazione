@@ -9,8 +9,8 @@ public class Vampiro implements Mostro {
 		danno = 2;
 	}
 
-	public void azzanna(Eroe e) {
-		e.subisciDanno(2);
+	public void azzanna(Personaggio p) {
+		p.subisciDanno(2);
 		if (vita <= 0)
 			isDead = true;
 	}
@@ -23,6 +23,10 @@ public class Vampiro implements Mostro {
 
 	public int getDanno() {
 		return danno;
+	}
+
+	public boolean isDead() {
+		return isDead;
 	}
 
 	public String getVita() {

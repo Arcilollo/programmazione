@@ -9,8 +9,8 @@ public class Eroe implements Umano {
 		danno = 3;
 	}
 
-	public void combatti(Vampiro v) {
-		v.subisciDanno(3);
+	public void combatti(Personaggio p) {
+		p.subisciDanno(3);
 		if (vita <= 0)
 			isDead = true;
 	}
@@ -23,6 +23,10 @@ public class Eroe implements Umano {
 
 	public int getDanno() {
 		return danno;
+	}
+
+	public boolean isDead() {
+		return isDead;
 	}
 
 	public String getVita() {

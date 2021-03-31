@@ -35,20 +35,24 @@ public class Licantropo implements Mostro, Umano {
 			return "Il licantropo é morto\n";
 	}
 
-	public void azzanna(Eroe e) {
+	public void azzanna(Personaggio p) {
 		if (!isUomo) {
-			e.subisciDanno(2);
+			p.subisciDanno(2);
 			if (vita <= 0)
 				isDead = true;
 		}
 	}
 
-	public void combatti(Vampiro v) {
+	public void combatti(Personaggio p) {
 		if (isUomo) {
-			v.subisciDanno(2);
+			p.subisciDanno(2);
 			if (vita <= 0)
 				isDead = true;
 		}
+	}
+
+	public boolean isDead() {
+		return isDead;
 	}
 
 	public int getDanno() {

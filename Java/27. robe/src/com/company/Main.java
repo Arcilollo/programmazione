@@ -29,7 +29,7 @@ public class Main {
 		System.out.println("3. Vampiro");
 		int r1 = sc.nextInt();
 
-		int r2;
+		int r2, dead = 0;
 		do {
 			System.out.println("Con quale personaggio vuoi affrontare?");
 			if (r1 != 1)
@@ -53,6 +53,7 @@ public class Main {
 							combatti(e, v);
 							break;
 					}
+					System.out.println("Hai inflitto: " + e.getDanno() + " di danno\n");
 					break;
 				case 2:
 					switch (r2) {
@@ -65,6 +66,7 @@ public class Main {
 							combatti(l, v);
 							break;
 					}
+					System.out.println("Hai inflitto: " + l.getDanno() + " di danno\n");
 					break;
 				case 3:
 					switch (r2) {
@@ -77,6 +79,7 @@ public class Main {
 						case 3:
 							break;
 					}
+					System.out.println("Hai inflitto: " + v.getDanno() + " di danno\n");
 					break;
 			}
 
@@ -84,7 +87,7 @@ public class Main {
 			System.out.println(l.getVita());
 			System.out.println(v.getVita());
 
-		} while (r2 != 0 || );
+		} while (r2 != 0 || dead != 0);
 
 	}
 }

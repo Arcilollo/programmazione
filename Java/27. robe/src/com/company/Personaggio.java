@@ -4,4 +4,5 @@ public interface Personaggio {
 	public String getVita();
 	public void subisciDanno(int danno);
 	public int getDanno();
+	public boolean isDead();
 }
