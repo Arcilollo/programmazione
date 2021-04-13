@@ -12,7 +12,7 @@ void presentaProcesso(char F, int n) {
 
 int main() {
 	int F1, F2;
-	int N11, N12, N21;
+	int N1;
 
 	int status;
 
@@ -24,41 +24,27 @@ int main() {
 
 
 
-	if (F1 == 0) {	// Parte eseguita da F1
+	if (F1 == 0) {					// Parte eseguita da F1
 		presentaProcesso('F', 1);
 
-		// Creazione dei due nipoti
-		N11 = fork();
-		if (N11 > 0) {
-			N12 = fork();
-		}
+		// Creazione del processo N1
+		N1 = fork();
 
-		if (N11 == 0) {	// Nipote 1
-			presentaProcesso('N', 11);
+		if (N1 == 0) {				// Parte eseguita da N1
+			presentaProcesso('N', 1);
 			exit(1);
 		}
-		else if (N12 == 0) {	// Nipote 2
-			presentaProcesso('N', 12);
-			exit(1);
-		}
-
-		for (int i = 0; i < 2; i++)
+		else if (N1 > 0){
 			wait(&status);
+			exit(1);
+		}
+		else
+			printf("Errore nella fork di N1");
 
-		exit(1);
 	}
 
 	else if (F2 == 0) {				// Parte eseguita da F2
 		presentaProcesso('F', 2);
-
-		// Creazione Nipote
-		N21 = fork();
-
-		if (N21 == 0) { // Nipote
-			presentaProcesso('N', 21);
-			exit(1);
-		}
-		wait(&status);
 		exit(1);
 	}
 
