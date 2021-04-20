@@ -2,7 +2,7 @@ package com.company;
 
 public class UfficioPostale {
 
-	private final Sportello[] sportelli;
+	private Sportello[] sportelli;
 	private final String nome;
 
 
@@ -40,11 +40,15 @@ public class UfficioPostale {
 		return clientiServiti;
 	}
 
+	public boolean serviClienti(int nSportello) {
+		return sportelli[nSportello].servi();
+	}
+
 	@Override
 	public String toString() {
 		String buffer = "";
 		for(int i = 0; i < sportelli.length; i++) {
-			buffer += "Sportello N°" + (i+1) + "\n";
+			buffer += "Sportello N°" + (i+1) + " Persone in coda: " + sportelli[i].getCodaCont() + "\n";
 			buffer += sportelli[i].toString() + "\n\n";
 		}
 		return buffer;

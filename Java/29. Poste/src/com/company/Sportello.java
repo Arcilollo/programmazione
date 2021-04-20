@@ -17,13 +17,16 @@ public class Sportello {
 		return codaCont == coda.length;
 	}
 
+	public int getCodaCont() {
+		return codaCont;
+	}
+
 	public void aggiungiCoda(Cliente cliente) {
 		coda[codaCont] = cliente;
 		codaCont++;
 	}
 
 	public void rimuoviCoda() {
-		//if(codaCont == 0)
 		for(int i = 0; i < codaCont-1; i++) {
 			coda[i] = coda[i+1];
 		}
