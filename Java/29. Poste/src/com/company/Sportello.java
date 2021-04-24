@@ -1,41 +1,31 @@
 package com.company;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class Sportello {
 
-	private final Cliente[] coda;
-	private int codaCont = 0;
+	private final List<Cliente> coda;
 
-	public Sportello(int maxCodaLength) {
-		this.coda = new Cliente[maxCodaLength];
+	public Sportello() {
+		this.coda = new LinkedList<>();
 	}
 
 	public int clientiInCoda() {
-		return codaCont;
-	}
-
-	public boolean isPieno() {
-		return codaCont == coda.length;
-	}
-
-	public int getCodaCont() {
-		return codaCont;
+		return coda.size();
 	}
 
 	public void aggiungiCoda(Cliente cliente) {
-		coda[codaCont] = cliente;
-		codaCont++;
+		coda.add(cliente);
 	}
 
 	public void rimuoviCoda() {
-		for(int i = 0; i < codaCont-1; i++) {
-			coda[i] = coda[i+1];
-		}
-		coda[codaCont-1] = null;
-		codaCont--;
+		coda.remove(0);
 	}
 
 	public boolean servi() {
-		if(codaCont > 0) {
+		if(coda.size() > 0) {
 			rimuoviCoda();
 			return true;
 		}

@@ -4,10 +4,12 @@ public class Cliente {
 
 	private final String nome;
 	private final String cognome;
+	private final int saldo;
 
-	public Cliente(String nome, String cognome) {
+	public Cliente(String nome, String cognome, int saldo) {
 		this.nome = nome;
 		this.cognome = cognome;
+		this.saldo = saldo;
 	}
 
 	public String getNome() {
@@ -20,6 +22,6 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return nome + " " + cognome;
+		return nome + " " + cognome + " " + saldo;
 	}
 }

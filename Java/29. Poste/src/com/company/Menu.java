@@ -8,11 +8,10 @@ public class Menu {
 
     public static void main(String[] args) {
 
-        String nomeUP = inputStringa("Inserisci nome ufficio postale: ");
-        int nSportelli = inputNumero("Numero sportelli: ");
-        int maxCodaSportelli = inputNumero("Massimo clienti in coda per sportello: ");
+        String nomeUP = inputString("Inserisci nome ufficio postale: ");
+        int nSportelli = inputInt("Numero sportelli: ");
 
-        UfficioPostale ufficioPostale = new UfficioPostale(nomeUP, nSportelli, maxCodaSportelli);
+        UfficioPostale ufficioPostale = new UfficioPostale(nomeUP, nSportelli);
 
         int r;
         do {
@@ -25,16 +24,17 @@ public class Menu {
 
             switch (r) {
                 case 1:
-                    String nome = inputStringa("Inserisci nome del cliente");
-                    String cognome = inputStringa("Inserisci cognome del cliente");
+                    String nome = inputString("Inserisci nome del cliente");
+                    String cognome = inputString("Inserisci cognome del cliente");
+                    int saldo = inputInt("Inserisci quanto deve pagare il cliente");
 
-                    if (ufficioPostale.aggiungiASportello(new Cliente(nome, cognome)))
+                    if (ufficioPostale.aggiungiASportello(new Cliente(nome, cognome, saldo)))
                         System.out.println("Cliente aggiunto correttamente");
                     else
                         System.out.println("Tutte le code sono piene");
                     break;
                 case 2:
-                    int nSportello = inputNumero("Inserisci lo sportello del cliente da servire");
+                    int nSportello = inputInt("Inserisci lo sportello del cliente da servire");
                     if (ufficioPostale.serviClienti(nSportello - 1))
                         System.out.println("Cliente servito");
                     else
@@ -53,12 +53,12 @@ public class Menu {
         } while (r != 0);
     }
 
-    private static String inputStringa(String msg) {
+    private static String inputString(String msg) {
         System.out.println(msg);
         return sc.next();
     }
 
-    private static int inputNumero(String msg) {
+    private static int inputInt(String msg) {
         System.out.println(msg);
         return sc.nextInt();
     }
