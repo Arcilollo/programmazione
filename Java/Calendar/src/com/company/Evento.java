@@ -21,7 +21,7 @@ public class Evento {
 
 	@Override
 	public String toString() {
-		return inizio + "\t - " + fine + "\t - " + nome;
+		return inizio + "\t- " + fine + "\t- " + nome;
 	}
 
 }

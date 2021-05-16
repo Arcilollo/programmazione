@@ -46,6 +46,7 @@ public class Data {
 
 	}
 
+	@Override
 	public String toString(){
 		int anno = c.get(Calendar.YEAR);
 		int mese = c.get(Calendar.MONTH) + 1;

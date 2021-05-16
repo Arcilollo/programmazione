@@ -17,8 +17,12 @@ public class Calendario {
 		return nome;
 	}
 
-	public void aggiungiEvento(Evento evento) {
-		eventi.put(evento.getNome(), evento);
+	public boolean aggiungiEvento(Evento evento) {
+		if (!eventi.containsKey(evento.getNome())) {
+			eventi.put(evento.getNome(), evento);
+			return true;
+		}
+		return false;
 	}
 
 	public boolean rimuoviEvento(String nome) {
@@ -30,8 +34,8 @@ public class Calendario {
 	}
 
 	public boolean spostaEvento(Evento evento) {
-		if (eventi.containsKey(nome)) {
-			aggiungiEvento(evento);
+		if (eventi.containsKey(evento.getNome())) {
+			eventi.put(evento.getNome(), evento);
 			return true;
 		}
 		return false;

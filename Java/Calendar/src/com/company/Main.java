@@ -6,7 +6,9 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Calendario calendario = new Calendario("Personale");
+		GestioneCalendari gestioneCalendari = new GestioneCalendari();
+		gestioneCalendari.aggiungiCalendario(new Calendario("Personale"));
+		gestioneCalendari.aggiungiCalendario(new Calendario("Scuola"));
 
 		int r;
 		do {
@@ -26,17 +28,19 @@ public class Main {
 					int fineD = inputInt("Inserisci la data di fine:");
 					int fineM = sc.nextInt();
 					int fineY = sc.nextInt();
+					String calendario = inputString("inserisci a che calendario vuoi aggiungere l'evento:");
 
 					Data inizio = new Data(inizioD, inizioM, inizioY);
 					Data fine = new Data(fineD, fineM, fineY);
 
-					calendario.aggiungiEvento(new Evento(nome, inizio, fine));
+					gestioneCalendari.aggiungiEvento(calendario, new Evento(nome, inizio, fine));
 
 					break;
 				case 2:
 					String nomeDaRimuovere = inputString("Inserisci il nome dell'evento da rimuovere:");
+					String calendario2 = inputString("Inserisci da quale calendario vuoi rimuovere l'evento:");
 
-					if (calendario.rimuoviEvento(nomeDaRimuovere))
+					if (gestioneCalendari.rimuoviEvento(calendario2, nomeDaRimuovere))
 						System.out.println("Evento rimosso");
 					else
 						System.out.println("L'evento non esiste");
@@ -50,18 +54,19 @@ public class Main {
 					int nuovaFineD = inputInt("Inserisci la data di fine:");
 					int nuovaFineM = sc.nextInt();
 					int nuovaFineY = sc.nextInt();
+					String calendario3 = inputString("Inserisci da quale calendario vuoi spostare l'evento:");
 
 					Data nuovoInizio = new Data(nuovoInizioD, nuovoInizioM, nuovoInizioY);
 					Data nuovaFine = new Data(nuovaFineD, nuovaFineM, nuovaFineY);
 
-					if (calendario.spostaEvento(new Evento(nomeDaSpostare, nuovoInizio, nuovaFine)))
+					if (gestioneCalendari.spostaEvento(calendario3, new Evento(nomeDaSpostare, nuovoInizio, nuovaFine)))
 						System.out.println("Evento spostato");
 					else
 						System.out.println("L'evento non esiste");
 
 					break;
 				case 4:
-					System.out.println(calendario);
+					System.out.println(gestioneCalendari);
 					break;
 			}
 
