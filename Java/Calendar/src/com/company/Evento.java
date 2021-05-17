@@ -21,7 +21,10 @@ public class Evento {
 
 	@Override
 	public String toString() {
-		return inizio + "\t- " + fine + "\t- " + nome;
+		String moreTab = "";
+		if (inizio.toString().length() + fine.toString().length() < 20)
+			moreTab = "\t";
+		return inizio + " - " + fine + ":\t" + moreTab + nome;
 	}
 
 }

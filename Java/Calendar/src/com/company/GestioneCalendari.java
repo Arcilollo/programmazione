@@ -22,6 +22,10 @@ public class GestioneCalendari {
 		return false;
 	}
 
+	public boolean isEmpty() {
+		return calendari.isEmpty();
+	}
+
 	public boolean aggiungiEvento(String nomeCalendario, Evento evento) {
 		return calendari.get(nomeCalendario).aggiungiEvento(evento);
 	}

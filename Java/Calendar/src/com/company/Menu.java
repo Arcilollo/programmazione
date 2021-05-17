@@ -2,20 +2,24 @@ package com.company;
 
 import java.util.Scanner;
 
-public class Main {
+public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		GestioneCalendari gestioneCalendari = new GestioneCalendari();
-		gestioneCalendari.aggiungiCalendario(new Calendario("Personale"));
-		gestioneCalendari.aggiungiCalendario(new Calendario("Scuola"));
 
 		int r;
 		do {
-			System.out.println("1. Aggiungi Evento");
-			System.out.println("2. Rimuovi Evento");
-			System.out.println("3. Sposta Evento");
-			System.out.println("4. Visualizza eventi");
+			if (!gestioneCalendari.isEmpty()) {
+				System.out.println("1. Aggiungi Evento");
+				System.out.println("2. Rimuovi Evento");
+				System.out.println("3. Sposta Evento");
+			}
+			System.out.println("4. Aggiungi un calendario");
+			if (!gestioneCalendari.isEmpty()) {
+				System.out.println("5. Rimuovi un calendario");
+				System.out.println("6. Visualizza eventi");
+			}
 			System.out.println("0. Esci");
 			r = sc.nextInt();
 
@@ -66,6 +70,24 @@ public class Main {
 
 					break;
 				case 4:
+					String nomeCalendario = inputString("Inserisci il nome del calendario da creare:");
+
+					if (gestioneCalendari.aggiungiCalendario(new Calendario(nomeCalendario)))
+						System.out.println("Calendario aggiunto correttamente");
+					else
+						System.out.println("Esiste giá un calendario con questo nome");
+
+					break;
+				case 5:
+					String nomeCalendario2 = inputString("Inserisci il nome del calendario da eliminare:");
+
+					if (gestioneCalendari.rimuoviCalendario(nomeCalendario2))
+						System.out.println("Calendario rimosso correttamente");
+					else
+						System.out.println("Il calendario non esiste");
+
+					break;
+				case 6:
 					System.out.println(gestioneCalendari);
 					break;
 			}
