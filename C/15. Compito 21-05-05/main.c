@@ -3,16 +3,24 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-int F1() {
-	return 3 * 4;
+int CalcoliFiglio1() {
+	int k = 3 * 4;
+	return k;
 }
 
-int F2() {
-	return 2 + 3;
+int CalcoliFiglio2() {
+	int k = 2 + 3;
+	return k;
 }
 
-int P1() {
-	return 6 / 2;
+int CalcoliPadre1() {
+	int k = 6 / 2;
+	return k;
+}
+
+int CalcoliPadre2(int x, int y, int z) {
+	int k = x + y + z;
+	return k;
 }
 
 int WaitStatus() {
@@ -34,22 +42,22 @@ int main() {
 
 
 	if (pid1 == 0) {
-		exit(F1());
+		y = CalcoliFiglio1();
+		exit(y);
 	}
 	else if (pid2 == 0) {
-		exit(F2());
+		z = CalcoliFiglio2();
+		exit(z);
 	}
 	else if (pid1 > 0) {
-		y = WaitStatus();
-		z = WaitStatus();
-
-		x = P1();
-
-		R = x + y + z;
+		x = CalcoliPadre1();
 	}
 
-	printf("Z = %d\n", R);
+	y = WaitStatus();
+	z = WaitStatus();
 
+	R = CalcoliPadre2(x, y, z);
+	printf("Z = %d\n", R);
 
 	return 0;
 }
